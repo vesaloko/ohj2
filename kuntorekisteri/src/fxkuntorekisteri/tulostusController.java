@@ -45,10 +45,7 @@ public class tulostusController implements ModalControllerInterface<String> {
         }
     }
 
-    
-    
-
-    
+   
     @Override
     public String getResult() {
         return null;

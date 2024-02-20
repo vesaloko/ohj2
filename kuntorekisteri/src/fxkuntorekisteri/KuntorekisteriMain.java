@@ -7,10 +7,8 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.fxml.FXMLLoader;
-
-
 /**
- * @author taruk
+ * @author vesal
  * @version 26.1.2023
  *
  */
@@ -40,15 +38,12 @@ public class KuntorekisteriMain extends Application {
             paavalikkoCtrl.lueTiedosto(params.getRaw().get(0));  
         else
             if ( !paavalikkoCtrl.avaa() ) Platform.exit();
-        
-
-
-        
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
 
+    
     /**
      * @param args Ei k�yt�ss�
      */

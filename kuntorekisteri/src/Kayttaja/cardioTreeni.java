@@ -22,16 +22,15 @@ public class cardioTreeni implements Cloneable {
     
     private static int seuraavaNro    = 1;
     
-    
-
-   /** vertailija, asettaa järjestyksen
+/** vertailija, asettaa järjestyksen
  * @author venla
  * @version 24 Apr 2023
  *
  */
 public static class Vertailija implements Comparator <cardioTreeni> {
-	   private int k;
-	   /**
+	private int k;
+
+	/**
 	 * @param k vertaaa
 	 */
 	public Vertailija(int k) { 
@@ -46,7 +45,7 @@ public static class Vertailija implements Comparator <cardioTreeni> {
    } 
 
    
-   /**
+/**
  * @param k kenttä
  * @return avain
  */
@@ -60,7 +59,6 @@ public String getAvain(int k) {
 		case 5: return "" +fiilis; 
 		default: return "ok";
 		}
-		
 	} 
     
    
@@ -173,7 +171,6 @@ public String getAvain(int k) {
     }
 
     
-    
     /**
      * @param s jäsenelle laitettava hetu
      * @return virheilmoitus, null jos ok
@@ -212,7 +209,6 @@ public String getAvain(int k) {
         return null;
     }
 
-    
 
     /**
      * @return treenin laji
@@ -227,10 +223,7 @@ public String getAvain(int k) {
         return laji;
     }
    
-    
-    /**
-     * 
-     */
+  
     /*
      * Apumetodi, jolla saadaan täytettyä testiarvot treenille.
      */
@@ -265,6 +258,7 @@ public String getAvain(int k) {
         tulosta(new PrintStream(os));
     }
 
+    
     /**
      * Antaa cardiotreenille seuraavan rekisterinumeron.
      * @return uusi tunnusNro

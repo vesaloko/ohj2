@@ -23,110 +23,96 @@ import Kayttaja.cardioTreeni;
  * controlleri cardion dialogille
  */
 public class CardioDialogController implements ModalControllerInterface<cardioTreeni>,Initializable  {
-
-
     @FXML private Label labelVirhe;
-    
     @FXML private ScrollPane panelCardio;
     @FXML private GridPane gridCardio;
     
     private static cardioTreeni apucardio = new cardioTreeni(); // cardiotreeni tietojen kyselyyn
     private int kentta = 0;
-
-
-    
     
 	@Override
-	public void initialize(URL url, ResourceBundle arg1) {
-		alusta();
-		
+public void initialize(URL url, ResourceBundle arg1) {
+	alusta();
 	}
 	
 	
-	  private void alusta() {
-	      edits1 = luoCardioKentat(gridCardio);
-	        for (TextField edit : edits1)
-	            if ( edit != null )
-	                edit.setOnKeyReleased( e -> kasitteleMuutosCardioon((TextField)(e.getSource())));
-	      panelCardio.setFitToHeight(true);
-	     
-	    }
+private void alusta() {
+	edits1 = luoCardioKentat(gridCardio);
+	    for (TextField edit : edits1)
+	        if ( edit != null )
+	            edit.setOnKeyReleased( e -> kasitteleMuutosCardioon((TextField)(e.getSource())));
+	    panelCardio.setFitToHeight(true);
+}
 
 
-	@FXML private void handleOK() {
-        if ( cardioKohdalla != null && cardioKohdalla.getLaji().trim().equals("") ) {
-           naytaVirhe("Liikaa tyhjiä kenttiä");
-           return;
+@FXML private void handleOK() {
+    if ( cardioKohdalla != null && cardioKohdalla.getLaji().trim().equals("") ) {
+        naytaVirhe("Liikaa tyhjiä kenttiä");
+        return;
             }
-        ModalController.closeStage(labelVirhe);
-	    }
+    ModalController.closeStage(labelVirhe);
+}
 	
-	
-     
-	  @FXML private void handleCancel() {
-	      cardioKohdalla = null;
-	       ModalController.closeStage(labelVirhe);
-	    }
+
+@FXML private void handleCancel() {
+	cardioKohdalla = null;
+	ModalController.closeStage(labelVirhe);
+}
 
 	  
 private TextField edits1[]; 
 private cardioTreeni cardioKohdalla;
 	  
-	  
-	  
-	@Override
-	public cardioTreeni getResult() {
-		return cardioKohdalla;
-	}
+  
+@Override
+public cardioTreeni getResult() {
+	return cardioKohdalla;
+}
 
 	
-	 /**
-     * Tyhjentään tekstikentät 
-	 * @param  edits tyhjennettävät kentät
-     */
-    public void tyhjenna(TextField[] edits) {
-        for (TextField edit: edits) 
-            if ( edit != null ) edit.setText(""); 
+/**
+ * Tyhjentään tekstikentät 
+ * @param  edits tyhjennettävät kentät
+ */
+public void tyhjenna(TextField[] edits) {
+    for (TextField edit: edits) 
+        if ( edit != null ) edit.setText(""); 
+}
 
-    }
 
-    
-    private void naytaVirhe(String virhe) {
-        if ( virhe == null || virhe.isEmpty() ) {
-            labelVirhe.setText("");
-            labelVirhe.getStyleClass().removeAll("virhe");
+private void naytaVirhe(String virhe) {
+    if ( virhe == null || virhe.isEmpty() ) {
+        labelVirhe.setText("");
+        labelVirhe.getStyleClass().removeAll("virhe");
             return;
         }
-        labelVirhe.setText(virhe);
-        labelVirhe.getStyleClass().add("virhe");
-    }
+    labelVirhe.setText(virhe);
+    labelVirhe.getStyleClass().add("virhe");
+}
     
-    
-    
-   /**
+       
+/**
  * @param obj obj
  * @param oletus oletus
  * @return oletus
  */
-   public static int getFieldId(Object obj, int oletus) {
-       if ( !( obj instanceof Node)) return oletus;
+public static int getFieldId(Object obj, int oletus) {
+    if ( !( obj instanceof Node)) return oletus;
        Node node = (Node)obj;
        return Mjonot.erotaInt(node.getId().substring(1),oletus);
-   }
-
-
+}
  
-    /**
-     * Käsitellään jäseneen tullut muutos
-     * @param edit muuttunut kenttä
-     */
-   protected void kasitteleMuutosCardioon(TextField edit) {
-       if (cardioKohdalla == null) return;
+/**
+ * Käsitellään jäseneen tullut muutos
+ * @param edit muuttunut kenttä
+ */
+protected void kasitteleMuutosCardioon(TextField edit) {
+    if (cardioKohdalla == null) return;
        int k = getFieldId(edit,apucardio.ekaKentta());
        String s = edit.getText();
        String virhe = null;
        
-       virhe = cardioKohdalla.aseta(k,s); 
+    virhe = cardioKohdalla.aseta(k,s); 
        if (virhe == null) {
            Dialogs.setToolTipText(edit,"");
            edit.getStyleClass().removeAll("virhe");
@@ -136,20 +122,17 @@ private cardioTreeni cardioKohdalla;
            edit.getStyleClass().add("virhe");
            naytaVirhe(virhe);
        }
-   }
+}
    
 
-
-    
-    
-    /**
-     * @param gridcardioTreenit 
-     * alustetaan gridpaneen kentätä cardiolle
-     * @return edits taulukko
-     */
-    public static TextField[] luoCardioKentat(GridPane gridcardioTreenit) {
-        gridcardioTreenit.getChildren().clear();
-        TextField[] edits = new TextField[apucardio.getKenttia()];
+/**
+ * @param gridcardioTreenit 
+ * alustetaan gridpaneen kentätä cardiolle
+ * @return edits taulukko
+ */
+public static TextField[] luoCardioKentat(GridPane gridcardioTreenit) {
+    gridcardioTreenit.getChildren().clear();
+    TextField[] edits = new TextField[apucardio.getKenttia()];
         
         for (int i=0, k = apucardio.ekaKentta(); k < apucardio.getKenttia(); k++, i++) {
             Label label = new Label(apucardio.getKysymys(k));
@@ -163,42 +146,35 @@ private cardioTreeni cardioKohdalla;
     }
     
 
-    
-    
-
-	@Override
-	public void handleShown() {
-	    kentta = Math.max(apucardio.ekaKentta(), Math.min(kentta, apucardio.getKenttia()-1));
-        edits1[kentta].requestFocus();
-
-		
+@Override
+public void handleShown() {
+	kentta = Math.max(apucardio.ekaKentta(), Math.min(kentta, apucardio.getKenttia()-1));
+    edits1[kentta].requestFocus();
 	}
 
-	@Override
-	public void setDefault(cardioTreeni oletus) {
-		cardioKohdalla =oletus;
-		naytaCardio(edits1,cardioKohdalla);
-		
+
+@Override
+public void setDefault(cardioTreeni oletus) {
+	cardioKohdalla =oletus;
+	naytaCardio(edits1,cardioKohdalla);	
 	}
 	
-	  private void setKentta(int kentta) {
-	        this.kentta = kentta;
-	    }
+    private void setKentta(int kentta) {
+	    this.kentta = kentta;
+	}
 	    
 
-	
-	  /** näyttää
-	 * @param edits1 taulukko
-	 * @param cardio treeni
-	 */
-	public static void naytaCardio(TextField[] edits1, cardioTreeni cardio) {
-	      for (int k = cardio.ekaKentta(); k < cardio.getKenttia(); k++) {
-	            edits1[k].setText(cardio.anna(k));
-	        }
-
+/** näyttää
+ * @param edits1 taulukko
+ * @param cardio treeni
+ */
+public static void naytaCardio(TextField[] edits1, cardioTreeni cardio) {
+	for (int k = cardio.ekaKentta(); k < cardio.getKenttia(); k++) {
+	    edits1[k].setText(cardio.anna(k));
 	    }
+}
  
-	  /**
+	/**
 	 * @param modalityStage mille modaalisia
 	 * @param oletus oletus
 	 * @param kentta mitä käsitellään
@@ -212,4 +188,3 @@ private cardioTreeni cardioKohdalla;
 	     	                    ctrl -> ctrl.setKentta(kentta));
 	    }
 }
-

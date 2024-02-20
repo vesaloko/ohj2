@@ -16,8 +16,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import Kayttaja.Tietue;
-
-
 /**
  * @author venla
  * @version 24 Apr 2023
@@ -38,8 +36,8 @@ public class TietueDialogController<TYPE extends Tietue> implements ModalControl
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         // alusta();
-        
     }
+    
     
     @FXML private void handleOk() {
         if ( tietueKohdalla != null && tietueKohdalla.anna(tietueKohdalla.ekaKentta()).trim().equals("") ) {

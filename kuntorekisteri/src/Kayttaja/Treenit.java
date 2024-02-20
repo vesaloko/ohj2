@@ -269,11 +269,8 @@ public class Treenit implements Iterable<SaliTreeni> {
       public int getLkm() {
             return lkm;
         }
-      
-    
-      
-      
 
+        
       /**
      * @author venla
      * @version 4 Apr 2023

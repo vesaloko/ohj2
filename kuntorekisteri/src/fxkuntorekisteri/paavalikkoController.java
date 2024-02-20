@@ -32,10 +32,6 @@ import Kayttaja.cardioTreeni;
 import Kayttaja.SaliTreeni;
 import Kayttaja.Kuntorekisteri;
 import static fxkuntorekisteri.SalitreeniDialogController.getFieldID; 
-
-
-
-
 /** Luokka kuntorekisterin käyttöliittymän tapahtumien hoitamiseksi.
  * @author venla
  * @version 24 Apr 2023
@@ -128,6 +124,7 @@ public class paavalikkoController implements Initializable {
     muokkaaTreenia(kentta);
     }
 
+
 /**
  * muokataan salitreenin tietoja
  * @param k
@@ -165,9 +162,7 @@ private void muokkaaCardio(int k) {
     } catch (SailoException e) { 
         Dialogs.showMessageDialog(e.getMessage()); 
     } 
-
 }
-
     
     /**
      * lisätään liike treeniin
@@ -183,7 +178,6 @@ private void muokkaaCardio(int k) {
             Dialogs.showMessageDialog("Ongelmia lisäämisessä! " + e.getMessage());
         } 
         hae(SaliTreeniKohdalla.getTunnusNro());  
-    
     }
 
 
@@ -342,8 +336,6 @@ private void muokkaaCardio(int k) {
             
             tableLiikkeet.setOnMouseClicked( e -> { if ( e.getClickCount() > 1 ) muokkaaLiiketta(); } );
             tableLiikkeet.setOnKeyPressed( e -> {if ( e.getCode() == KeyCode.F2 ) muokkaaLiiketta();}); 
-            
-
         }
         
      
@@ -388,7 +380,7 @@ private void muokkaaCardio(int k) {
 
         
         /**
-         * Näyttää listasta valitun jäsenen tiedot, tilapäisesti yhteen isoon edit-kenttään
+         * Näyttää listasta valitun treenin tiedot, yhteen isoon edit-kenttään
          */
         protected void naytaSaliTreeni() {
             SaliTreeniKohdalla = chooserTreenit.getSelectedObject();
@@ -399,7 +391,6 @@ private void muokkaaCardio(int k) {
             naytaLiikkeet(SaliTreeniKohdalla);
             naytaLkm();
             naytaLiikkeidenMaara(SaliTreeniKohdalla);
-            
         }
         
         
@@ -413,7 +404,6 @@ private void muokkaaCardio(int k) {
             
             String s=Integer.toString(summa);  
             labelLkm.setText(s);
-    
         }
         
         
@@ -426,7 +416,7 @@ private void muokkaaCardio(int k) {
                 if (lkm == 0) labelMaara.setText("Ei vielä liikkeitä");
                 String s=Integer.toString(lkm);  
                 labelMaara.setText(s);
-            }
+        }
         
         
         /**

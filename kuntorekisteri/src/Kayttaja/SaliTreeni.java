@@ -335,8 +335,6 @@ public class SaliTreeni implements Cloneable, Tietue {
  
 		treeni.tulosta(System.out); 
         treeni.tallenna(); // tallentaa treenin tiedot
-		
-
 	}
 
 	

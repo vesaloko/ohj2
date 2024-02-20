@@ -1,21 +1,20 @@
 package fxkuntorekisteri;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    import java.net.URL;
-    import java.util.ResourceBundle;
-
-    import fi.jyu.mit.fxgui.ModalController;
-    import fi.jyu.mit.fxgui.ModalControllerInterface;
+import fi.jyu.mit.fxgui.ModalController;
+import fi.jyu.mit.fxgui.ModalControllerInterface;
 import fi.jyu.mit.ohj2.Mjonot;
 import javafx.fxml.FXML;
-    import javafx.fxml.Initializable;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-    import Kayttaja.SaliTreeni;
-    import fi.jyu.mit.fxgui.Dialogs;
+import Kayttaja.SaliTreeni;
+import fi.jyu.mit.fxgui.Dialogs;
 
     /**
      * Kysytään salitreeninn tiedot luomalla sille uusi dialogi
@@ -25,16 +24,11 @@ import javafx.stage.Stage;
      *
      */
     public class SalitreeniDialogController implements ModalControllerInterface<SaliTreeni>,Initializable  {
-
-      /**  @FXML private TextField editNimi;
-        @FXML private TextField editPvm;
-        @FXML private TextField editFiilis;*/
     	@FXML private ScrollPane panelSalitreenit;
     	@FXML private GridPane gridSalitreeni;
         @FXML private Label labelVirhe;
         
 
-        
         @Override
         public void initialize(URL url, ResourceBundle bundle) {
             alusta();  
@@ -62,7 +56,6 @@ import javafx.stage.Stage;
         private int kentta=0;
         
         
-        
         /**
          * @param gridSaliTreeni jota käsitellään
          * @return taulukko
@@ -77,11 +70,10 @@ import javafx.stage.Stage;
         	edits[k]=edit;
         	edit.setId("e"+k);
         	gridSaliTreeni.add(edit,1,i);
-        	
         	}
-        	return edits;
-        			
+        	return edits;	
         }
+
 
         /**
          * Tyhjentään tekstikentät 
@@ -104,6 +96,7 @@ import javafx.stage.Stage;
 
         }
         
+
         private void naytaVirhe(String virhe) {
             if ( virhe == null || virhe.isEmpty() ) {
                 labelVirhe.setText("");
@@ -113,8 +106,7 @@ import javafx.stage.Stage;
             labelVirhe.setText(virhe);
             labelVirhe.getStyleClass().add("virhe");
         }
-        
-        
+         
       
         /**
          * @param obj mistä
@@ -126,8 +118,6 @@ import javafx.stage.Stage;
         	Node node=(Node)obj;
         	return Mjonot.erotaInt(node.getId().substring(1), oletus);
         }
-        
-
         
         
         /**
@@ -153,7 +143,6 @@ import javafx.stage.Stage;
         }
         
 
-        
         @Override
         public void setDefault(SaliTreeni oletus) {
             SaliTreeniKohdalla = oletus;
@@ -185,16 +174,9 @@ import javafx.stage.Stage;
          */
         public static void naytaSaliTreeni(TextField[] edits, SaliTreeni salitreeni) {
             if (salitreeni == null) return;
-            
-            /**edits[0].setText(salitreeni.getNimi());
-            edits[1].setText(salitreeni.getPvm());
-            edits[2].setText(salitreeni.getFiilis());*/
             for (int k=salitreeni.ekaKentta(); k< salitreeni.getKenttia(); k++){
             	edits[k].setText(salitreeni.anna(k));
             }
-            
-      
-
         }
         
         
@@ -214,14 +196,9 @@ import javafx.stage.Stage;
                     modalityStage, oletus,
                     ctrl -> ctrl.setKentta(kentta)
                 );
-        	
-
         }
         
         private void setKentta(int kentta) {
         	this.kentta=kentta;
         }
-
     }
-
-

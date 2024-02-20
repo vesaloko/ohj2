@@ -30,8 +30,6 @@ public class SisaltaaTarkistaja  {
     public static boolean onkoVain(String jono, String sallitut) {
         for (int i=0; i<jono.length(); i++)
             if ( sallitut.indexOf(jono.charAt(i)) < 0) return false;
-           
-    
         return true;
     }
 
