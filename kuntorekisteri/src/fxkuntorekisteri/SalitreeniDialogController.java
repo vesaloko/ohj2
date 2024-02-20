@@ -15,7 +15,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import Kayttaja.SaliTreeni;
 import fi.jyu.mit.fxgui.Dialogs;
-
     /**
      * Kysytään salitreeninn tiedot luomalla sille uusi dialogi
      * 
